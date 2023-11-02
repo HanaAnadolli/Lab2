@@ -8,8 +8,8 @@ app.use(cors({
 
 const mongoose = require('mongoose');
 
-const mongoURI = "mongodb://127.0.0.1:27017/real-estate"; // MongoDB connection URI
-const dbName = "real-estate"; // Name of the database
+const mongoURI = "mongodb://127.0.0.1:27017/real-estate"; 
+const dbName = "real-estate"; 
 
 async function connectToDatabase() {
   try {
@@ -23,7 +23,6 @@ async function connectToDatabase() {
   }
 }
 
-// Create the database if it doesn't exist
 async function createDatabaseIfNotExists() {
   try {
     const adminDb = mongoose.connection.db.admin();
