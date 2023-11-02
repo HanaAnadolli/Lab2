@@ -8,8 +8,13 @@ app.use(cors({
 
 const mongoose = require('mongoose');
 
+<<<<<<< HEAD
 const mongoURI = "mongodb://127.0.0.1:27017/real-estate"; 
 const dbName = "real-estate"; 
+=======
+const mongoURI = "mongodb://127.0.0.1:27017/real-estate";
+const dbName = "real-estate";
+>>>>>>> b7b02f8d7b5cac89b96505325052dbf055db6abd
 
 async function connectToDatabase() {
   try {
