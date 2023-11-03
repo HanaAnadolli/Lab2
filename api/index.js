@@ -6,50 +6,15 @@ app.use(cors({
     origin: '*'
 }));
 
-const mongoose = require('mongoose');
+const mongoose =  require('mongoose');
+mongoose.connect("mongodb://127.0.0.1:27017/real_estate", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-<<<<<<< HEAD
-const mongoURI = "mongodb://127.0.0.1:27017/real-estate"; 
-const dbName = "real-estate"; 
-=======
-const mongoURI = "mongodb://127.0.0.1:27017/real-estate";
-const dbName = "real-estate";
->>>>>>> b7b02f8d7b5cac89b96505325052dbf055db6abd
+app.listen(8000, function() {
+    console.log('Server is running')
+});
 
-async function connectToDatabase() {
-  try {
-    await mongoose.connect(mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log('Connected to MongoDB');
-  } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-  }
-}
-
-async function createDatabaseIfNotExists() {
-  try {
-    const adminDb = mongoose.connection.db.admin();
-    const dbNames = await adminDb.listDatabases();
-    if (dbNames.databases.some(db => db.name === dbName)) {
-      console.log('Database already exists:', dbName);
-    } else {
-      await adminDb.command({ create: dbName });
-      console.log('Database created:', dbName);
-    }
-  } catch (error) {
-    console.error('Error creating database:', error);
-  }
-}
-
-async function startServer() {
-  await connectToDatabase();
-  await createDatabaseIfNotExists();
-
-  app.listen(8000, function () {
-    console.log('Server is running');
-  });
-}
-
-startServer();
+const userRouter = require('./routes/user.route');
+app.use("/api/user", userRouter);
